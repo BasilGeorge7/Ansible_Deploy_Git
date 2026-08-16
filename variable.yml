@@ -1,0 +1,3 @@
+---
+httpd_port: "80"
+httpd_user: "apache"
