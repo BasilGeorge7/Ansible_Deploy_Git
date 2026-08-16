@@ -1,0 +1,5 @@
+<virtualhost *:{{ httpd_port }}>
+  servername {{ ansible.basilg.shop }}
+  documentroot /var/www/html/{{ hostname }}/
+  directoryindex index.php index.html
+</virtualhost>

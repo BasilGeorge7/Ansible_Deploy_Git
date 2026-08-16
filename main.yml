@@ -1,0 +1,19 @@
+#deploy app from git hub
+---
+- name: "Deploying from git"
+  hosts: prod
+  become: yes
+  vars_files:
+    - variable.yml
+  tasks:
+    - name: "Installing Packages"
+      yum:
+        name: "{{ items }}"
+        state: present
+      loop:
+        "{{ Packages }}"    
+    - name: "cloning git"
+      git:
+        src: "{{ repo_url }}"
+        dest: "/tmp/gitcloned"
+        
