@@ -8,7 +8,7 @@
   tasks:
     - name: "Installing Packages"
       yum:
-        name: "{{ items }}"
+        name: "{{ item }}"
         state: present
       loop:
         "{{ Packages }}"    
@@ -21,7 +21,7 @@
     
     - name: "cloning git"
       git:
-        src: "{{ repo_url }}"
+        repo: "{{ repo_url }}"
         dest: "{{ clone_dest }}"
       register: clone_status
        
@@ -29,8 +29,6 @@
       copy:
         src: "{{ clone_dest }}"
         dest: "/var/www/html/{{ hostname }}"
-
-
 
     - name: "restart httpd"
       service:
