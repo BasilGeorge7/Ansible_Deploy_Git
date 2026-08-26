@@ -12,8 +12,38 @@
         state: present
       loop:
         "{{ Packages }}"    
+
+    - name: "conf copying"
+      template:
+        src: ./basilg_conf.tmpl
+        dest: /etc/httpd/conf.d/basilg_shop.conf
+      register: apache_conf
+    
     - name: "cloning git"
       git:
         src: "{{ repo_url }}"
-        dest: "/tmp/gitcloned"
-        
+        dest: "{{ clone_dest }}"
+      register: clone_status
+       
+    - name: "Copy content to Document root "
+      copy:
+        src: "{{ clone_dest }}"
+        dest: "/var/www/html/{{ hostname }}"
+
+
+
+    - name: "restart httpd"
+      service:
+        name: "httpd"
+        state: restarted
+        enabled: true
+      when: apache_conf is changed
+
+    - name: "restart php-fpm" 
+      service:
+        name: "php-fpm" 
+        state: restarted 
+        enabled: true
+      when: clone_status.changed
+
+  

@@ -1,9 +1,10 @@
 ---
-httpd_port: "80"
+httpd_port: "8080"
 httpd_owner: "apache"
 httpd_group: "apache"
 repo_url: "https://github.com/FujiClado/aws-elb-site.git"
 hostname: "ansible.basilg.shop"
+clone_dest: "/tmp/ansible.basilg.shop/"
 Packages:
   - "httpd"
   - "php-fpm"
