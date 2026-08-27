@@ -13,6 +13,12 @@
       loop:
         "{{ Packages }}"    
 
+    - name: "service start"
+      service:
+        name: httpd
+        state: started
+      ignore_errors: yes
+
     - name: "conf copying"
       template:
         src: ./basilg_conf.tmpl
@@ -29,6 +35,7 @@
       copy:
         src: "{{ clone_dest }}"
         dest: "/var/www/html/{{ hostname }}"
+        remote_src: true
 
     - name: "restart httpd"
       service:

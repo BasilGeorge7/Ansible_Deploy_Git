@@ -3,16 +3,5 @@
     ServerName {{ hostname }}
 
     DocumentRoot /var/www/html/{{ hostname }}
-
-    <Directory /var/www/html>
-        AllowOverride All
-        Require all granted
-    </Directory>
-
-    # Enable ModSecurity for this VirtualHost
-    SecRuleEngine On
-
-    ErrorLog /var/log/httpd/basilgg_error.log
-    CustomLog /var/log/httpd/basilgg_access.log combined
-
+    DirectoryIndex index.php index.html
 </VirtualHost>

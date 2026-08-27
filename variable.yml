@@ -1,5 +1,5 @@
 ---
-httpd_port: "8080"
+httpd_port: "80"
 httpd_owner: "apache"
 httpd_group: "apache"
 repo_url: "https://github.com/FujiClado/aws-elb-site.git"
