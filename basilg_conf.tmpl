@@ -3,5 +3,9 @@
     ServerName {{ hostname }}
 
     DocumentRoot /var/www/html/{{ hostname }}
+     <Directory /var/www/html/{{ hostname }}>
+        AllowOverride All
+        Require all granted
+    </Directory>
     DirectoryIndex index.php index.html
 </VirtualHost>
